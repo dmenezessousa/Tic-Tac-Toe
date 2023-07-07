@@ -1,24 +1,20 @@
+//Query Selectors
 const gameScore = document.querySelector(".score");
-const redPlayer = document.querySelector(".red-player");
 const redPlayerTitle = document.querySelector(".red-player-title");
 const redPlayerScore = document.querySelector(".red-player-score");
-const bluePlayer = document.querySelector(".blue-player");
 const bluePlayerTitle = document.querySelector(".blue-player-title");
 const bluePlayerScore = document.querySelector(".blue-player-score");
 const playersTurnAndStatus = document.querySelector(".player-status");
 const gameBoard = document.querySelector(".game-board");
 const cell = document.querySelectorAll(".cell");
-const resetScore = document.querySelector(".reset-score");
 const resetGame = document.querySelector(".reset-game");
-const leftColumn = document.querySelector(".left-column");
-const middleColumn = document.querySelector(".middle-column");
-const rightColumn = document.querySelector(".right-column");
 
+// Global Variables
 let redScore = 0;
 let blueScore = 0;
-
 let playerTurn = "red-player-cell";
 
+// Winning Combinations
 const winningCombinations = [
   [0, 1, 2], // top row
   [3, 4, 5], // middle row
@@ -30,14 +26,18 @@ const winningCombinations = [
   [2, 4, 6], // diagonal right to left
 ];
 
+// Functions
 const checkForWin = () => {
-  let redCells = [];
-  let blueCells = [];
+  //check for win
+  let redCells = []; //store red cells
+  let blueCells = []; //store blue cells
 
   cell.forEach((cell) => {
+    //loop through cells
     if (cell.classList.contains("red-player-cell")) {
+      //check if cell contains red class
       cell.style.backgroundColor = "red";
-      redCells.push(Number(cell.dataset.cell));
+      redCells.push(Number(cell.dataset.cell)); //push cell number to redCells array
     } else if (cell.classList.contains("blue-player-cell")) {
       cell.style.backgroundColor = "blue";
       blueCells.push(Number(cell.dataset.cell));
@@ -45,12 +45,15 @@ const checkForWin = () => {
   });
 
   winningCombinations.forEach((combination) => {
+    //loop through winning combinations
     if (combination.every((cell) => redCells.includes(cell))) {
-      redScore++;
-      redPlayerScore.textContent = redScore;
-      gameBoard.removeEventListener("click", handleClick);
+      //check if redCells array contains all the winning combinations
+      redScore++; //increment red score
+      redPlayerScore.textContent = redScore; //display red score
+      gameBoard.removeEventListener("click", handleClick); //remove event listener
       combination.forEach((cell) => {
-        document.querySelector(`[data-cell="${cell}"]`).classList.add("win");
+        //loop through winning combination
+        document.querySelector(`[data-cell="${cell}"]`).classList.add("win"); //add win class to winning combination
       });
     } else if (combination.every((cell) => blueCells.includes(cell))) {
       blueScore++;
@@ -63,6 +66,7 @@ const checkForWin = () => {
   });
 
   if (redScore === 1) {
+    //check if red score is 1 and display winner
     redPlayerTitle.textContent = "Red Winner!";
     redPlayerTitle.style.color = "red";
     bluePlayerTitle.textContent = "Blue Loser!";
@@ -72,6 +76,7 @@ const checkForWin = () => {
   }
 
   if (blueScore === 1) {
+    //check if blue score is 1 and display winner
     redPlayerTitle.textContent = "Red Loser!";
     redPlayerTitle.style.color = "red";
     bluePlayerTitle.textContent = "Blue Winner!";
@@ -80,6 +85,7 @@ const checkForWin = () => {
     playersTurnAndStatus.style.color = "blue";
   }
 
+  //check if red and blue score is 0 and red and blue cells length is 5 and 4 respectively and display tie
   if (
     redScore === 0 &&
     blueScore === 0 &&
@@ -87,7 +93,7 @@ const checkForWin = () => {
     blueCells.length === 4
   ) {
     playersTurnAndStatus.textContent = "It's a Tie!";
-  }else if (
+  } else if (
     redScore === 0 &&
     blueScore === 0 &&
     redCells.length === 4 &&
@@ -97,21 +103,23 @@ const checkForWin = () => {
   }
 };
 
-const handleClick = (e) => {
+const handleClick = (e) => {//handle click
   const cell = e.target;
   const currentClass = playerTurn;
 
+  //check if cell contains red or blue class
   if (
     cell.classList.contains("red-player-cell") ||
     cell.classList.contains("blue-player-cell")
   ) {
-    return;
+    return;//return if cell contains red or blue class
   }
 
-  cell.classList.add(currentClass);
+  cell.classList.add(currentClass);//add red or blue class to cell
 
-  checkForWin();
+  checkForWin();//calls check for win function
 
+  //check if player turn is red or blue and display X or O respectively
   if (playerTurn === "red-player-cell") {
     playerTurn = "blue-player-cell";
     cell.textContent = "X";
@@ -122,12 +130,18 @@ const handleClick = (e) => {
 };
 
 const removeHandleClick = () => {
+  //remove event listener
   cell.forEach((cell) => {
     cell.removeEventListener("click", handleClick);
   });
 };
 
 const resetGameScore = () => {
+  //reset game score
+  redScore = 0;
+  blueScore = 0;
+  redPlayerScore.textContent = redScore;
+  bluePlayerScore.textContent = blueScore;
   redPlayerTitle.textContent = "Red";
   redPlayerTitle.style.color = "red";
   bluePlayerTitle.textContent = "Blue";
@@ -136,14 +150,12 @@ const resetGameScore = () => {
   playersTurnAndStatus.style.color = "white";
   playerTurn = "red-player-cell";
   gameBoard.addEventListener("click", handleClick);
-  redScore = 0;
-  blueScore = 0;
-  redPlayerScore.textContent = redScore;
-  bluePlayerScore.textContent = blueScore;
 };
 
 const resetGameBoard = () => {
+  //reset game board
   cell.forEach((cell) => {
+    //remove red or blue or win class from cells
     cell.classList.remove("red-player-cell");
     cell.classList.remove("blue-player-cell");
     cell.classList.remove("win");
@@ -152,9 +164,11 @@ const resetGameBoard = () => {
 };
 
 const resetGameBoardAndScore = () => {
+  //reset game board and score
   resetGameBoard();
   resetGameScore();
 };
 
+// Event Listeners
 resetGame.addEventListener("click", resetGameBoardAndScore);
 gameBoard.addEventListener("click", handleClick);
