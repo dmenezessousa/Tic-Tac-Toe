@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Tic-Tac-Toe</h1>
+      <section ><h2>Click a square to begin</h2></section>
+      <div class="score-board">
+        <div class="score">
+          <div class="red-player">
+            <h3 class="red-player-title">Red</h3>
+            <span class="red-player-score">0</span>
+          </div>
+          <div class="blue-player">
+            <h3 class="blue-player-title">Blue</h3>
+            <span class="blue-player-score">0</span>
+          </div>
+        </div>
+      </header>
+      <section class="player-status"><h2>First Player starts as <strong style="color:red">Red </strong>and Second Player as <strong style="color:blue">Blue</strong>.</h2></section>
+    <main >
+      <section class="game-board tic-tac-toe">
+        <div class="left-column">
+          <div class="cell" data-cell="0"></div>
+          <div class="cell" data-cell="3"></div>
+          <div class="cell" data-cell="6"></div>
+        </div>
+        <div class="middle-column">
+          <div class="cell" data-cell="1"></div>
+          <div class="cell" data-cell="4"></div>
+          <div class="cell" data-cell="7"></div>
+        </div>
+        <div class="right-cloumn">
+          <div class="cell" data-cell="2"></div>
+          <div class="cell" data-cell="5"></div>
+          <div class="cell" data-cell="8"></div>
+        </div>
+      </section>
+      <button class="reset-game">Reset Game</button>
+    </main>  
+  </body>
+</html>

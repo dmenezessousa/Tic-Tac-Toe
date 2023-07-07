@@ -1,0 +1,96 @@
+body {
+  background-color: #282828;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Games", sans-serif;
+}
+
+.score-board {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 3px solid gray;
+  width: 200px;
+  margin: 20px auto;
+}
+
+h2{
+  color:#ffffff
+}
+.score {
+  width: 100%;
+  padding: 10px 0;
+  margin-top: -10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.red-player {
+  color: red;
+}
+
+.blue-player {
+  color: blue;
+}
+
+.red-player-cell {
+  background-color: red;
+}
+
+.blue-player-cell {
+  background-color: blue;
+}
+
+.player-turn {
+  font-size: 30px;
+  color: red;
+}
+.main {
+  display: flex;
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 3px solid gray;
+  background-color: #fff;
+  font-size: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+.game-board {
+  width: 318px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.reset-game {
+  background-color: #fff;
+  border: 3px solid gray;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  color: gray;
+}
+
+.game-over {
+  display: none;
+}
+
+.reset-game:hover {
+  background-color: gray;
+  color: #fff;
+}
+
+.winner {
+  font-size: 50px;
+  color: red;
+  margin-top: 20px;
+}
+
