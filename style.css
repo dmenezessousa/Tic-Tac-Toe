@@ -79,6 +79,18 @@ h2{
   color: gray;
 }
 
+.reset-score{
+  background-color: #fff;
+  border: 3px solid gray;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  color: gray;
+  margin-left: 10px;
+}
+
 .game-over {
   display: none;
 }

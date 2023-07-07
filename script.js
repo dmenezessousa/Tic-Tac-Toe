@@ -8,6 +8,7 @@ const playersTurnAndStatus = document.querySelector(".player-status");
 const gameBoard = document.querySelector(".game-board");
 const cell = document.querySelectorAll(".cell");
 const resetGame = document.querySelector(".reset-game");
+const resetScore = document.querySelector(".reset-score");
 
 // Global Variables
 let redScore = 0;
@@ -138,8 +139,6 @@ const removeHandleClick = () => {
 
 const resetGameScore = () => {
   //reset game score
-  redScore = 0;
-  blueScore = 0;
   redPlayerScore.textContent = redScore;
   bluePlayerScore.textContent = blueScore;
   redPlayerTitle.textContent = "Red";
@@ -162,6 +161,14 @@ const resetGameBoard = () => {
     cell.style.backgroundColor = "white";
   });
 };
+const resetPlayerScore = () => {
+  //reset score
+  redScore = 0;
+  blueScore = 0;
+  redPlayerScore.textContent = redScore;
+  bluePlayerScore.textContent = blueScore;
+};
+
 
 const resetGameBoardAndScore = () => {
   //reset game board and score
@@ -171,4 +178,5 @@ const resetGameBoardAndScore = () => {
 
 // Event Listeners
 resetGame.addEventListener("click", resetGameBoardAndScore);
+resetScore.addEventListener("click", resetPlayerScore);
 gameBoard.addEventListener("click", handleClick);
